@@ -1,0 +1,87 @@
+<div class="d-flex justify-content-center" *ngIf="load == 1; else elseBlock">
+  <div class="spinner-grow text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div class="spinner-grow text-secondary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div class="spinner-grow text-success" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div class="spinner-grow text-danger" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div class="spinner-grow text-warning" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div class="spinner-grow text-info" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div class="spinner-grow text-dark" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+
+<ng-template #elseBlock>
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive-sm">
+
+        <table class="table rounded-top">
+          <thead class="bg-white shadow p-3 mb-5 rounded">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col" >Mã booking</th>
+              <th scope="col" class="text-center">Số loại vé</th>
+              <th scope="col" >Tổng tiền</th>
+              <th scope="col" >Trạng thái</th>
+              <th scope="col" >Thời gian tạo</th>
+               <th scope="col" >Thời gian cập nhật</th>
+               
+            </tr>
+          </thead>
+          <tbody *ngFor="let booking of bookings  | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+            <tr (click)="onSelect(booking)">
+              <td>{{ i+1 }}</td>
+              <td>{{booking._id}}</td>
+              <td class="text-center">
+                  {{booking.booking_items.length}}
+              </td>
+              <td>{{booking.total |currency:'VND'}}</td>
+              <td>{{booking.status}}</td>
+           <td> {{ booking.created_at|date : 'HH:MM - dd/MM/yyyy' }}</td>  
+          <td>    {{ booking.updated_at|date : 'HH:MM - dd/MM/yyyy' }}</td>
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+  </div>
+  <pagination-controls (pageChange)="p = $event" class="float-right" previousLabel="" nextLabel="">
+  </pagination-controls>
+
+</ng-template>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Body
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

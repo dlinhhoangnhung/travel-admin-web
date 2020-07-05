@@ -1,0 +1,83 @@
+<div class="d-flex justify-content-center" *ngIf="load == 1; else elseBlock">
+    <div class="spinner-grow text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-secondary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-success" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-danger" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-warning" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-info" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-dark" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+  
+  
+  <ng-template #elseBlock>
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive-sm">
+  
+          <table class="table rounded-top">
+            <thead class="bg-white shadow p-3 mb-5 rounded">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col" >Tên tài khoản</th>
+                <th scope="col">Tên người dùng</th>
+                <th scope="col">Số điện thoại</th>
+                <th scope="col" class="text-center">Địa chỉ</th>
+              
+              </tr>
+            </thead>
+            <tbody *ngFor="let user of users  | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+              <tr (click)='onSelect(user)'>
+                <td>{{ i+1 }}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.lastname + user.firstname }}</td>
+                <td>{{user.phone}}</td>
+                <td class="text-center">
+                  {{user.address}}
+                </td>
+            </tbody>
+  
+          </table>
+        </div>
+      </div>
+    </div>
+    <pagination-controls (pageChange)="p = $event" class="float-right" previousLabel="" nextLabel="">
+    </pagination-controls>
+  
+  </ng-template>
+  
+  
+  
+  <!-- Modal -->
+  <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Body
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>

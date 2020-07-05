@@ -1,0 +1,83 @@
+<div class="d-flex justify-content-center" *ngIf="load == 1; else elseBlock">
+  <div class="spinner-grow text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div class="spinner-grow text-secondary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div class="spinner-grow text-success" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div class="spinner-grow text-danger" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div class="spinner-grow text-warning" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div class="spinner-grow text-info" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div class="spinner-grow text-dark" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+<ng-template #elseBlock>
+  <div class="card">
+    <div class="card-header">
+      <h3 class="float-left">Thông tin chi tiết:</h3>
+      <div class="btn-group float-right">
+        <a class="btn btn-outline-warning">Sửa</a>
+        <a class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal">Xoá</a>
+      </div>
+    </div>
+    <div class="card-body">
+
+      <form>
+
+        <div class="row">
+
+          <label class="col">Mã booking: {{ booking._id }}</label>
+
+          <label class="col">Tạo lúc: {{ booking.created_at|date : 'HH:MM - dd/MM/yyyy' }}</label>
+
+          <label class="col">Cập nhật lúc: {{ booking.updated_at|date : 'HH:MM - dd/MM/yyyy' }}</label>
+
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <h5>
+              Thông tin người dùng
+            </h5>
+            {{user.firstname +" " +user.lastname}}
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+</ng-template>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cảnh báo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Khi thay đổi sẽ không hoàn tác được, bạn có muốn thay đổi?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+        <button type="button" class="btn btn-primary">Lưu thay đôi</button>
+      </div>
+    </div>
+  </div>
+</div>
