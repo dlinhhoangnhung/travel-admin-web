@@ -50,7 +50,32 @@
             <h5>
               Thông tin người dùng
             </h5>
-            {{user.firstname +" " +user.lastname}}
+            <p>
+              Tên khách hàng: {{user.firstname +" " +user.lastname}}</p>
+            <p> Số điện thoại: {{user.phone}}</p>
+            <p> Email: {{user.email}}</p>
+          </div>
+          <div class="col">
+            <h5>Chi tiết đơn hàng</h5>
+            <p>Tổng giá: {{booking.total | currency:'VND'}}</p>
+            <p>Trạng thái: {{booking.status}}</p>
+
+            <h5>Danh sách vé:</h5>
+            <div *ngFor='let bookingItem of bookingItems; let i = index'>
+              <div>
+                <a href="./tours/{{bookingItem.tour._id}}">- Tên tour {{bookingItem.tour.title}}</a>
+                <p> + Số lượng vé: {{bookingItem.quantity}}</p>
+                <p> + Loại vé: {{bookingItem.type}}</p>
+                <p> + Giá
+                  {{bookingItem.type =='adult'? bookingItem.tour.adult_price: bookingItem.tour.child_price |currency:'VND' }}
+                </p>
+                <p> + TỔNG:
+                  {{ bookingItem.quantity* (bookingItem.type =='adult'? bookingItem.tour.adult_price: bookingItem.tour.child_price) |currency:'VND' }}
+                </p>
+              </div>
+
+              <div class="dropdown-divider"></div>
+            </div>
           </div>
         </div>
 
