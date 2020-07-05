@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TourService } from '../tour.service';
 import { Tour } from '../tour.model';
-import {ActivatedRoute} from '@angular/router' 
+import {ActivatedRoute, Router} from '@angular/router' 
 @Component({
   selector: 'app-tour-detail',
   templateUrl: './tour-detail.component.html',
@@ -11,7 +11,7 @@ export class TourDetailComponent implements OnInit {
 
   public tour:Tour;
   public id;
-  constructor(private _tourService: TourService, private route : ActivatedRoute) { }
+  constructor(private _tourService: TourService, private route : ActivatedRoute, private router : Router) { }
   public load = 1;
   public delete = 0;
   ngOnInit() {
@@ -20,5 +20,6 @@ export class TourDetailComponent implements OnInit {
   }
   onDelete(){
     this._tourService.deleteTourById(this.id).subscribe(() => {  this.delete = 0 })
+    this.router.navigate(['/tours'])
   }
 }

@@ -1,1 +1,106 @@
-<p>user-detail works!</p>
+<div class="d-flex justify-content-center" *ngIf="load == 1; else elseBlock">
+    <div class="spinner-grow text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-secondary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-success" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-danger" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-warning" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-info" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-dark" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+</div>
+  <ng-template #elseBlock>
+    <div class="card">
+      <div class="card-header">
+        <h3 class="float-left">Thông tin chi tiết:</h3>
+        <div class="btn-group float-right">
+          <a class="btn btn-outline-warning">Sửa</a>
+          <a class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal">Xoá</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <form>
+            <div class="d-flex justify-content-center"> <img src="{{user.avatar}}" width="200" class="rounded-circle"></div>
+      
+      
+
+            <div class="form-row"  style="padding-top: 20px;">
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Email</label>
+                <input type="email" class="form-control" readonly id="inputEmail4" value="{{user.email}}" >
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Username</label>
+                <input type="text" class="form-control" id="inputPassword4" value="{{user.username}}">
+              </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Ho</label>
+                  <input type="text" class="form-control" readonly id="inputEmail4" value="{{user.lastname}}" >
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">Ten</label>
+                  <input type="text" class="form-control" id="inputPassword4" value="{{user.firstname}}">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col">
+                    <label for="inputAddress2">SDT</label>
+                    <input type="text" class="form-control" id="inputAddress2" value="{{user.phone}}">
+                  </div>
+              <div class="form-group col">
+                <label for="inputState">Gioi tinh</label>
+                <select id="inputState" class="form-control">
+                  <option selected>Nam</option>
+                  <option>Nu</option>
+                </select>
+              </div>
+             
+            </div>
+            <div class="form-group">
+              <label for="inputAddress">Address</label>
+              <input type="text" class="form-control" id="inputAddress" value="{{user.address}}">
+            </div>
+           
+            
+         
+          </form>
+     
+      </div>
+    </div>
+  </ng-template>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Cảnh báo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Khi thay đổi sẽ không hoàn tác được, bạn có muốn thay đổi?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+          <button type="button" class="btn btn-primary">Lưu thay đôi</button>
+        </div>
+      </div>
+    </div>
+  </div>
