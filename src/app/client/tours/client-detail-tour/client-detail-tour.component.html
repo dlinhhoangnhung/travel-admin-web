@@ -1,0 +1,85 @@
+<div class="d-flex justify-content-center" *ngIf="load == 1; else elseBlock">
+    <div class="spinner-grow text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-secondary" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-success" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-danger" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-warning" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-info" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-dark" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+<ng-template #elseBlock>
+    <style>
+        ul.timeline {
+            list-style-type: none;
+            position: relative;
+        }
+
+        ul.timeline:before {
+            content: ' ';
+            background: #d4d9df;
+            display: inline-block;
+            position: absolute;
+            left: 29px;
+            width: 2px;
+            height: 100%;
+            z-index: 400;
+        }
+
+        ul.timeline>li {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        ul.timeline>li:before {
+            content: ' ';
+            background: white;
+            display: inline-block;
+            position: absolute;
+            border-radius: 50%;
+            border: 3px solid #22c0e8;
+            left: 20px;
+            width: 20px;
+            height: 20px;
+            z-index: 400;
+        }
+    </style>
+    <div class="row">
+        <div class="col-sm-7">
+            <img src="{{tour.image_url}}" alt="">
+        </div>
+        <div class="col-sm-5">
+            <h2>{{tour.title}}</h2>
+            <p> {{ tour.child_price |currency:'VND'}} - {{ tour.adult_price |currency:'VND' }}</p>
+            <p>
+                Số ngày: {{ tour.day }}, Số đêm: {{ tour.night }}
+            </p>
+            <p>Phương tiện di chuyển: {{tour.vehicle}} </p>
+            <a class="btn btn-success">Thêm vào giỏ hàng</a>
+        </div>
+    </div>
+    <ul class="timeline">
+        <li *ngFor="let activity of tour.activities; let i = index">
+            <h4 class="badge badge-primary text-wrap font-weight-bold" style="width: 8rem;"> {{ activity.num }}</h4>
+            <p>
+                {{ activity.desc }}
+            </p>
+        </li>
+    </ul>
+
+
+</ng-template>
